@@ -1,0 +1,71 @@
+class DoublyNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        new_node = DoublyNode(data)
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+            new_node.prev = current
+
+    def prepend(self, value):
+        new_node = DoublyNode(value)
+        if self.head is None:
+            self.head = new_node
+        else:
+            self.head.prev = new_node
+            new_node.next = self.head
+            self.head = new_node
+
+    def delete(self, value):
+        current = self.head
+        while current:
+            if current.data == value:
+                if current.prev:
+                    current.prev.next = current.next
+                if current.next:
+                    current.next.prev = current.prev
+                if current == self.head:  
+                    self.head = current.next
+                return  
+            current = current.next
+
+    def reverse(self):
+        current = self.head
+        previous = None
+        while current:
+            
+            previous = current.prev
+            current.prev = current.next
+            current.next = previous
+            current = current.prev
+        if previous:
+            self.head = previous.prev
+
+    def display(self):
+        current = self.head
+        while current:
+            print(current.data, end=" <-> ")
+            current = current.next
+        print("None")
+
+# Usage
+doubly_linked_list = DoublyLinkedList()
+doubly_linked_list.append(1)
+doubly_linked_list.append(2)
+doubly_linked_list.append(3)
+doubly_linked_list.prepend(0)
+doubly_linked_list.delete(2)
+doubly_linked_list.reverse()
+doubly_linked_list.display()
