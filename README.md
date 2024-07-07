@@ -1,1 +1,1 @@
-# PythonExerciseD5
+we covered data structure which are ways to store and organize data to enable efficient operations and processing, using Python which provides several built-in data structures as well as support for more complex ones
